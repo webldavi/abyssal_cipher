@@ -7,6 +7,7 @@
 <script setup>
 import movimentation from "./movimentation.js";
 // import settings from "./settings";
+const player = ref(null)
 const settings = ref({
   position: {
     x: 0,
@@ -31,10 +32,10 @@ onMounted(() => {
     movimentation(
       updateSettings,
       updatedPosition.value,
+      player.value,
       JSON.parse(JSON.stringify(settings.value)),
       event
     );
-    console.log(updatedPosition.value);
   });
 });
 </script>
@@ -42,12 +43,12 @@ onMounted(() => {
 <style scoped>
 .player {
   transform: v-bind(updatedPosition);
-  @apply h-6 w-6 rounded-sm relative flex items-center justify-center bg-black;
+  @apply h-12 w-12 rounded-sm relative flex items-center justify-center bg-black z-50;
 }
 .player > div {
   background-color: transparent;
   box-shadow: 0px 0px 0px 9999px rgba(13, 12, 12, 0.98),
-    1px 1px 18px 10px rgba(13, 12, 12, 0.98) inset;
-  @apply p-32 scale-150 rounded-full z-50;
+    1px 0px 15px 20px rgb(13, 12, 12) inset;
+  @apply p-32 scale-150 rounded-full z-10;
 }
 </style>
